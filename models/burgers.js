@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-  var Burger = sequelize.define(
-    "burgers",
+  var burger = sequelize.define(
+    "Burger",
     {
       burger_name: {
         type: DataTypes.STRING,
@@ -15,5 +15,5 @@ module.exports = function(sequelize, DataTypes) {
       timestamps: false
     }
   );
-  return Burger;
+  return burger;
 };

@@ -7,7 +7,8 @@ module.exports = function(app) {
     // findAll returns all entries for a table when used with no options
     db.Burger.findAll({}).then(function(dbBurger) {
       // We have access to the burger as an argument inside of the callback function
-      res.json(dbBurger);
+      console.log(dbBurger);
+      res.render("index", dbBurger);
     });
   });
 
@@ -16,6 +17,7 @@ module.exports = function(app) {
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
+
     db.Burger.create({
       burger_name: req.body.burger_name
     })
@@ -28,28 +30,28 @@ module.exports = function(app) {
         // We can "catch" the error to prevent it from being "thrown", which could crash our node app
         res.json(err);
       });
+  });
+  app.put("/api/burgers/:id", function(req, res) {
+    // Update takes in an object describing the properties we want to update, and
+    // we use where to describe which objects we want to update
 
-    app.put("/api/burgers/:id", function(req, res) {
-      // Update takes in an object describing the properties we want to update, and
-      // we use where to describe which objects we want to update
-      db.Burger.update(
-        {
-          devoured: true
-        },
-        {
-          where: {
-            id: req.params.id
-          }
+    db.Burger.update(
+      {
+        devoured: true
+      },
+      {
+        where: {
+          id: req.params.id
         }
-      )
-        .then(function(dbBurger) {
-          res.json(dbBurger);
-        })
-        .catch(function(err) {
-          // Whenever a validation or flag fails, an error is thrown
-          // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-          res.json(err);
-        });
-    });
+      }
+    )
+      .then(function(dbBurger) {
+        res.json(dbBurger);
+      })
+      .catch(function(err) {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
   });
 };

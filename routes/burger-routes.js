@@ -7,8 +7,11 @@ module.exports = function(app) {
     // findAll returns all entries for a table when used with no options
     db.Burger.findAll({}).then(function(dbBurger) {
       // We have access to the burger as an argument inside of the callback function
-      console.log(dbBurger);
-      res.render("index", dbBurger);
+      var hbsObject = {
+        burgers: dbBurger
+      };
+      console.log(hbsObject);
+      res.render("index", hbsObject);
     });
   });
 

@@ -7,10 +7,11 @@ module.exports = function(app) {
     // findAll returns all entries for a table when used with no options
     db.Burger.findAll({}).then(function(dbBurger) {
       // We have access to the burger as an argument inside of the callback function
+
       var hbsObject = {
         burgers: dbBurger
       };
-      console.log(hbsObject);
+
       res.render("index", hbsObject);
     });
   });
@@ -26,7 +27,7 @@ module.exports = function(app) {
     })
       .then(function(dbBurger) {
         // We have access to the new todo as an argument inside of the callback function
-        res.json(dbBurger);
+        res.send(dbBurger);
       })
       .catch(function(err) {
         // Whenever a validation or flag fails, an error is thrown

@@ -2,7 +2,9 @@ console.log("hello");
 
 $(document).ready(function() {
   $(".devour-it").on("click", function(event) {
+    event.preventDefault();
     var id = $(this).data("id");
+    console.log(id);
 
     $.ajax("/api/burgers/" + id, {
       type: "PUT"

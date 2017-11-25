@@ -4,7 +4,7 @@
   "description": "make a burgers app using sequelize",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": " NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
